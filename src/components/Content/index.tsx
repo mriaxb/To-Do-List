@@ -3,7 +3,7 @@ import Plus from '../../assets/plus.svg';
 import { NoContent } from '../NoContent/intex';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { TodoList } from '../TodoList';
-import { Task } from '../../Models/Task';
+import { Task } from '../../models/Task';
 import { v4 as uuidv4 } from 'uuid';
 import { api } from '../../configs/api';
 

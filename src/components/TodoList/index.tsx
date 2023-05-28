@@ -1,6 +1,6 @@
 import Trash from '../../assets/trash.svg';
 import styles from './index.module.css'
-import { Task } from '../../Models/Task';
+import { Task } from '../../models/Task';
 
 interface TodoListProps {
     list: Task[];
