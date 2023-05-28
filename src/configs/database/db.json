@@ -1,0 +1,19 @@
+{
+    "tasks": [
+        {
+            "id": "1",
+            "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi recusandae quas repellat culpa amet incidunt necessitatibus odit aspernatur modi? Doloribus vel error earum debitis exercitationem libero facilis eligendi magnam repellendus!",
+            "isDone": false
+        },
+        {
+            "id": "2",
+            "description": "`Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt quod repellat aperiam. Quia, odio? Praesentium error voluptate delectus ipsa est sed. Necessitatibus, quibusdam! Sit dolorem provident obcaecati ex ullam est.",
+            "isDone": false
+        },
+        {
+            "id": "3",
+            "description": "`Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, maiores laboriosam praesentium nihil autem nemo quam ullam laborum fugiat sapiente soluta dolor accusamus minima voluptatum laudantium, ipsum explicabo id accusantium?`",
+            "isDone": true
+        }
+    ]
+}
