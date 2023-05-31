@@ -1,0 +1,50 @@
+body{
+    background-color: var(--blue--dark);
+}
+
+.homePage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container_title{
+    margin-left: -1200px;
+    margin-top: -40px;
+
+    left: 0;
+    float: left;
+    align-items: flex-start;
+    text-align: left;
+   
+}
+
+.title{
+    
+    font-size: 100px;
+    text-decoration: none;
+    color: var(--gray--100);
+}
+
+.ftTela{
+    margin-top: 10px;
+    position: absolute;
+    bottom: 0;
+}
+
+@media (max-width: 755px) {
+
+    .container_title{
+        margin-top: 10px;
+        margin-left: -108px;
+    }
+    .title{
+        font-size: 80px;
+    }
+    .ftTela img{
+        width: 600px;
+        margin-bottom: 90px;
+    }
+
+}

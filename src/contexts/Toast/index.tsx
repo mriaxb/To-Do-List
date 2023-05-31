@@ -44,8 +44,10 @@ const ToastProvider = ({ children }: ToastProviderProps) => {
 
     return(
         <ToastContext.Provider value={{isHidden, showToast}}>
-            {!isHidden && <Toast message={toast.message} type={toast.type} />}    
+            {!isHidden && <Toast message={toast.message} type={toast.type} />}   
+            {children} 
         </ToastContext.Provider>
+        
     )
 }
 

@@ -6,15 +6,20 @@ import { TodoList } from '../TodoList';
 import { Task } from '../../models/Task';
 import { v4 as uuidv4 } from 'uuid';
 import { api } from '../../configs/api';
+import useToDoContext from '../../hooks/useToDoContext';
+import { useToast } from '../../hooks/useToast';
 
 export const Content = () => {
 
     const [description, setDescription] = useState<string>("");
  //estudar variaveis de estado
-    const [taskList, setTaskList] = useState<Task[]>([]);
 
-    const tasksDone = taskList.filter((task) => {
-        return task.isDone !== false
+    const { taskListState, setTaskListState } = useToDoContext();
+
+    const { showToast } = useToast();
+    
+    const tasksDone = taskListState.filter((task) => {
+        return task.isDone !== false;
     })
 
     const disableButton = !description.length;
@@ -25,15 +30,32 @@ export const Content = () => {
             description,
             isDone: false
         }
-        setTaskList((currentValue) => [...currentValue, newTask]);
-        setDescription('');
-
+        api.post("tasks", newTask)
+            .then((response) => setTaskListState((currentValue) => [...currentValue, response.data]) )
+            .finally(() => {
+                setDescription('')
+                console.log(newTask)
+                showToast({
+                    message: "Tarefa adicionada com sucesso",
+                    type: 'success'
+                })
+            });    
+            // setTaskList((currentValue) => [...currentValue, newTask]);
+        // setDescription('');
     }
 
     const changeStatusCheckbox = (id: string) => {
+        const task = taskListState.find(task => task.id === id);
 
-        const change = taskList.map((task) => {
-            if(task.id == id){
+        if(task) {
+            api.patch(`task/${id}`, {
+                isDone: !tasksDone,
+            });
+        }
+
+        const taskEstado = taskListState.map((task) => {
+
+            if(task.id === id){
                 return{
                     ...task,
                     isDone: !task.isDone
@@ -41,14 +63,22 @@ export const Content = () => {
             }
             return task;
         });
-        setTaskList(change);
+        setTaskListState(taskEstado)
+
     }
 
     const removeTaskOnList = (id: string) => {
-        setTaskList((currentValue) => currentValue.filter(task => task.id != id))
+        api.delete(`tasks/${id}`)
+            .then(() => 
+            setTaskListState((currentValue) => currentValue.filter(task => task.id !== id)));
+
     }
+
+
     useEffect(() => {
-        api.get("tasks").then((response) => {})
+        api.get("tasks")
+        .then((response) => setTaskListState(response.data as Task[]));
+    
     }, []);
 
     return(
@@ -77,15 +107,18 @@ export const Content = () => {
                 <article className={styles.content_header}>
                     <article className={styles.tasks_container}>
                         <p className={styles.task_create}>Tarefas Criadas</p>
-                        <span className={styles.span_value}>{taskList.length}</span>
+                        <span className={styles.span_value}>{taskListState.length}</span>
                     </article>
                     <article className={styles.tasks_container}>
                         <p className={styles.task_done}>Concluídas</p>
-                        <span className={styles.span_value}> {tasksDone.length} de {taskList.length}</span>
+                        <span className={styles.span_value}> {tasksDone.length} de {taskListState.length}</span>
                     </article>
                 </article>
 
-                {taskList.length == 0 ? <NoContent/> : <TodoList onDelete={removeTaskOnList} onChangeCheckbox = {changeStatusCheckbox} list={taskList}/>}
+               {taskListState.length === 0 ? <NoContent/> : <TodoList 
+                    onDelete={removeTaskOnList}
+                    onChangeCheckbox={changeStatusCheckbox}
+                />}
             </main>
         </section>
     )

@@ -11,4 +11,4 @@ const useToast = (): ToastContextProps => {
     return context;
 }
 
-export { useToast};
+export { useToast };

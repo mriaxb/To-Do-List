@@ -1,17 +1,19 @@
 import Trash from '../../assets/trash.svg';
 import styles from './index.module.css'
-import { Task } from '../../models/Task';
+import useToDoContext from '../../hooks/useToDoContext';
 
 interface TodoListProps {
-    list: Task[];
+    // list: Task[];
     onDelete: (id: string) => void
     onChangeCheckbox: (id:string) => void
 }
 
-export const TodoList = ({ list, onDelete, onChangeCheckbox }: TodoListProps) => {
+export const TodoList = ({onDelete, onChangeCheckbox }: TodoListProps) => {
+    const { taskListState } = useToDoContext()
+    
     return(
         <section>
-            {list.map((task) => (
+            {taskListState.map((task) => (
                 <article key={task.id} className={styles.content_container}>
                     <input 
                         type="checkbox" 

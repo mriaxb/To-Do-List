@@ -45,7 +45,7 @@ input[type="checkbox"]:hover {
     justify-content: center;
     gap: 8px;
 
-    background: var(--blue-dark);
+    background: var(--blue--dark);
     color: var(--gray--100);
     border-radius: 8px;
     border: none;
@@ -97,5 +97,14 @@ input[type="checkbox"]:hover {
 
     color: var(--gray--200);
     background: var(--gray--400);
+
+}
+
+@media (max-width: 755px) {
+
+    .input{
+        width: 430px;
+        height: 54px;
+    }
 
 }

@@ -46,10 +46,10 @@ input[type="checkbox"] {
     appearance: none;
     margin: 0;
     font: inherit;
-    color: var(--blue-dark);
+    color: var(--blue--dark);
     width: 19px;
     height: 18px;
-    border: 2px solid var(--blue-dark);
+    border: 2px solid var(--blue--dark);
     border-radius: 16px;
     transform: translateY(0.415em);
 
@@ -86,4 +86,13 @@ input[type="checkbox"]:checked::after {
     transform-origin: bottom left;
     transform: rotate(45deg);
     color: white;
+}
+
+@media (max-width: 755px) {
+
+    .content_container{
+    width: 530px;
+        
+    }
+
 }
