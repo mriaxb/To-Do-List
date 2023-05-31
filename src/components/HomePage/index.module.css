@@ -10,8 +10,8 @@ body{
 }
 
 .container_title{
-    margin-left: -1200px;
-    margin-top: -40px;
+    margin-left: -800px;
+    margin-top: -20px;
 
     left: 0;
     float: left;
@@ -22,7 +22,7 @@ body{
 
 .title{
     
-    font-size: 100px;
+    font-size: 70px;
     text-decoration: none;
     color: var(--gray--100);
 }
@@ -32,7 +32,10 @@ body{
     position: absolute;
     bottom: 0;
 }
-
+.ftTela img{
+    width: 800px;
+    
+}
 @media (max-width: 755px) {
 
     .container_title{
